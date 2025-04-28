@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -22,8 +24,10 @@ import {
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
+  const router = useRouter();
   return (
     <div className="flex min-h-screen flex-col dark:bg-gray-950">
       {/* Header */}
@@ -33,7 +37,7 @@ export default function Home() {
             <div className="relative h-10 w-10 overflow-hidden rounded-full bg-gradient-to-br from-green-500 to-blue-600 p-[2px]">
               <div className="h-full w-full rounded-full bg-white dark:bg-gray-900 p-1">
                 <Image
-                  src="/placeholder.svg?height=40&width=40&text=MD"
+                  src="/logo.svg?height=40&width=40&text=MD"
                   alt="My Doctor Logo"
                   width={40}
                   height={40}
@@ -92,7 +96,10 @@ export default function Home() {
             >
               Log In
             </Button>
-            <Button className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 shadow-md shadow-green-500/20 dark:shadow-green-900/20 transition-all duration-300 hover:shadow-xl hover:shadow-green-500/30 dark:hover:shadow-green-900/30">
+            <Button
+              className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 shadow-md shadow-green-500/20 dark:shadow-green-900/20 transition-all duration-300 hover:shadow-xl hover:shadow-green-500/30 dark:hover:shadow-green-900/30"
+              onClick={() => router.push("/#download")}
+            >
               Download Now
             </Button>
           </div>
@@ -129,12 +136,16 @@ export default function Home() {
                 appointments, and get instant medical assistance.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white h-12 px-6 shadow-lg shadow-green-500/20 dark:shadow-green-900/20 transition-all duration-300 hover:shadow-xl hover:shadow-green-500/30 dark:hover:shadow-green-900/30 hover:scale-105">
+                <Button
+                  className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white h-12 px-6 shadow-lg shadow-green-500/20 dark:shadow-green-900/20 transition-all duration-300 hover:shadow-xl hover:shadow-green-500/30 dark:hover:shadow-green-900/30 hover:scale-105"
+                  onClick={() => router.push("/#download")}
+                >
                   <Download className="mr-2 h-4 w-4" /> Download Now
                 </Button>
                 <Button
                   variant="outline"
                   className="border-green-500 dark:border-green-700 text-green-600 dark:text-green-400 hover:bg-green-50 dark:hover:bg-green-900/30 h-12 px-6 transition-all duration-300 hover:shadow-md"
+                  onClick={() => router.push("/#about")}
                 >
                   Learn More{" "}
                   <ChevronRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -167,7 +178,7 @@ export default function Home() {
                 <div className="absolute -bottom-6 -right-6 h-64 w-64 rounded-full bg-blue-100 dark:bg-blue-900/50 opacity-30 blur-3xl"></div>
                 <div className="relative rounded-[2.5rem] border-8 border-white dark:border-gray-800 bg-white dark:bg-gray-800 shadow-xl shadow-gray-200/50 dark:shadow-black/30">
                   <Image
-                    src="/placeholder.svg?height=600&width=600&text=Doctor+Consultation"
+                    src="/video-call.svg?height=600&width=600&text=Doctor+Consultation"
                     alt="Doctor consulting patient via video call"
                     width={600}
                     height={600}
@@ -204,7 +215,7 @@ export default function Home() {
             <div className="grid grid-cols-2 md:grid-cols-5 gap-8 items-center justify-center opacity-70">
               <div className="flex justify-center group">
                 <Image
-                  src="/placeholder.svg?height=40&width=120&text=Partner+Logo"
+                  src="/square.png"
                   width={120}
                   height={40}
                   alt="Healthcare Partner Logo"
@@ -214,7 +225,7 @@ export default function Home() {
               </div>
               <div className="flex justify-center group">
                 <Image
-                  src="/placeholder.svg?height=40&width=120&text=Partner+Logo"
+                  src="/incepta.jpeg"
                   width={120}
                   height={40}
                   alt="Healthcare Partner Logo"
@@ -224,7 +235,7 @@ export default function Home() {
               </div>
               <div className="flex justify-center group">
                 <Image
-                  src="/placeholder.svg?height=40&width=120&text=Partner+Logo"
+                  src="/beximco.png"
                   width={120}
                   height={40}
                   alt="Healthcare Partner Logo"
@@ -234,7 +245,7 @@ export default function Home() {
               </div>
               <div className="flex justify-center group">
                 <Image
-                  src="/placeholder.svg?height=40&width=120&text=Partner+Logo"
+                  src="/aci-plc.png"
                   width={120}
                   height={40}
                   alt="Healthcare Partner Logo"
@@ -244,7 +255,7 @@ export default function Home() {
               </div>
               <div className="flex justify-center group">
                 <Image
-                  src="/placeholder.svg?height=40&width=120&text=Partner+Logo"
+                  src="/eskayef.jpeg"
                   width={120}
                   height={40}
                   alt="Healthcare Partner Logo"
@@ -287,7 +298,7 @@ export default function Home() {
                 <div className="relative mx-auto max-w-sm md:max-w-none">
                   <div className="relative rounded-[2.5rem] border-8 border-white dark:border-gray-800 bg-white dark:bg-gray-800 shadow-xl shadow-gray-200/50 dark:shadow-black/30 rotate-3 transition-transform duration-500 hover:rotate-0">
                     <Image
-                      src="/placeholder.svg?height=800&width=400&text=App+Interface"
+                      src="/app-interface.svg?height=800&width=400&text=App+Interface"
                       alt="My Doctor App Interface"
                       width={400}
                       height={800}
@@ -360,7 +371,10 @@ export default function Home() {
                   </div>
                 </div>
                 <div className="pt-4">
-                  <Button className="group bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white h-12 px-6 shadow-lg shadow-green-500/20 dark:shadow-green-900/20 transition-all duration-300 hover:shadow-xl hover:shadow-green-500/30 dark:hover:shadow-green-900/30">
+                  <Button
+                    className="group bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white h-12 px-6 shadow-lg shadow-green-500/20 dark:shadow-green-900/20 transition-all duration-300 hover:shadow-xl hover:shadow-green-500/30 dark:hover:shadow-green-900/30"
+                    onClick={() => router.push("/#features")}
+                  >
                     Explore Features{" "}
                     <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </Button>
@@ -535,7 +549,7 @@ export default function Home() {
                 <div className="transform translate-y-8 transition-transform duration-500 hover:-translate-y-1 hover:scale-105">
                   <div className="rounded-2xl border-8 border-white dark:border-gray-800 bg-white dark:bg-gray-800 shadow-xl dark:shadow-black/30 overflow-hidden">
                     <Image
-                      src="/placeholder.svg?height=600&width=300&text=App+Screen+1"
+                      src="/home.svg?height=600&width=300&text=App+Screen+1"
                       alt="My Doctor App Interface - Home Screen"
                       width={300}
                       height={600}
@@ -547,7 +561,7 @@ export default function Home() {
                 <div className="transition-transform duration-500 hover:-translate-y-1 hover:scale-105">
                   <div className="rounded-2xl border-8 border-white dark:border-gray-800 bg-white dark:bg-gray-800 shadow-xl dark:shadow-black/30 overflow-hidden">
                     <Image
-                      src="/placeholder.svg?height=600&width=300&text=App+Screen+2"
+                      src="/doctor.svg?height=600&width=300&text=App+Screen+2"
                       alt="My Doctor App Interface - Doctor Search"
                       width={300}
                       height={600}
@@ -559,7 +573,7 @@ export default function Home() {
                 <div className="transform translate-y-8 transition-transform duration-500 hover:-translate-y-1 hover:scale-105">
                   <div className="rounded-2xl border-8 border-white dark:border-gray-800 bg-white dark:bg-gray-800 shadow-xl dark:shadow-black/30 overflow-hidden">
                     <Image
-                      src="/placeholder.svg?height=600&width=300&text=App+Screen+3"
+                      src="/appointments.svg?height=600&width=300&text=App+Screen+3"
                       alt="My Doctor App Interface - Appointment Booking"
                       width={300}
                       height={600}
@@ -648,6 +662,7 @@ export default function Home() {
                 </div>
               </div>
               <div className="group relative">
+                <div className="absolute left-10 top-10 h-[calc(100%-20px)] w-[2px] bg-gradient-to-b from-green-100 to-green-300 dark:from-green-900/30 dark:to-green-700/30 md:block hidden"></div>
                 <div className="relative z-10 text-center md:text-left">
                   <div className="relative mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-2xl bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 shadow-lg dark:shadow-black/30 md:mx-0 group-hover:border-green-100 dark:group-hover:border-green-900 transition-all duration-300 group-hover:shadow-xl group-hover:shadow-green-500/10 dark:group-hover:shadow-green-900/10">
                     <span className="absolute -right-2 -top-2 flex h-8 w-8 items-center justify-center rounded-full bg-green-500 text-sm font-bold text-white">
@@ -670,7 +685,7 @@ export default function Home() {
                 <div className="absolute -z-10 h-full w-full rounded-full bg-green-50 dark:bg-green-900/20 opacity-70 blur-3xl"></div>
                 <div className="rounded-2xl border-8 border-white dark:border-gray-800 bg-white dark:bg-gray-800 shadow-xl dark:shadow-black/30 overflow-hidden">
                   <Image
-                    src="/placeholder.svg?height=400&width=800&text=App+Workflow"
+                    src="/workflow.svg?height=400&width=800&text=App+Workflow"
                     alt="My Doctor App Workflow"
                     width={800}
                     height={400}
@@ -814,7 +829,16 @@ export default function Home() {
                     never before. Available on iOS and Android.
                   </p>
                   <div className="flex flex-col sm:flex-row gap-4">
-                    <Button className="bg-white text-green-600 hover:bg-green-50 flex items-center gap-2 h-14 px-6 shadow-lg shadow-green-900/20 transition-all duration-300 hover:scale-105">
+                    <Button
+                      onClick={() =>
+                        window.open(
+                          "https://www.apple.com/apps",
+                          "_blank",
+                          "noopener,noreferrer"
+                        )
+                      }
+                      className="bg-white text-green-600 hover:bg-green-50 flex items-center gap-2 h-14 px-6 shadow-lg shadow-green-900/20 transition-all duration-300 hover:scale-105"
+                    >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="24"
@@ -837,7 +861,16 @@ export default function Home() {
                         <div className="text-lg font-semibold">App Store</div>
                       </div>
                     </Button>
-                    <Button className="bg-white text-green-600 hover:bg-green-50 flex items-center gap-2 h-14 px-6 shadow-lg shadow-green-900/20 transition-all duration-300 hover:scale-105">
+                    <Button
+                      onClick={() =>
+                        window.open(
+                          "https://play.google.com/store/apps?hl=en",
+                          "_blank",
+                          "noopener,noreferrer"
+                        )
+                      }
+                      className="bg-white text-green-600 hover:bg-green-50 flex items-center gap-2 h-14 px-6 shadow-lg shadow-green-900/20 transition-all duration-300 hover:scale-105"
+                    >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="24"
@@ -863,7 +896,7 @@ export default function Home() {
                   <div className="absolute -z-10 h-full w-full rounded-full bg-white/10 opacity-70 blur-3xl"></div>
                   <div className="relative rounded-[2.5rem] border-8 border-white/20 bg-white/10 shadow-xl overflow-hidden">
                     <Image
-                      src="/placeholder.svg?height=600&width=300&text=App+Interface"
+                      src="/app-interface-2.svg?height=600&width=300&text=App+Interface"
                       alt="My Doctor App Interface"
                       width={300}
                       height={600}
@@ -898,7 +931,10 @@ export default function Home() {
                 that you receive the best care possible.
               </p>
               <div className="flex justify-center">
-                <Button className="group bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white h-12 px-6 shadow-lg shadow-green-500/20 dark:shadow-green-900/20 transition-all duration-300 hover:shadow-xl hover:shadow-green-500/30 dark:hover:shadow-green-900/30 hover:scale-105">
+                <Button
+                  className="group bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white h-12 px-6 shadow-lg shadow-green-500/20 dark:shadow-green-900/20 transition-all duration-300 hover:shadow-xl hover:shadow-green-500/30 dark:hover:shadow-green-900/30 hover:scale-105"
+                  onClick={() => router.push("/#about")}
+                >
                   Learn More About Us{" "}
                   <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </Button>
@@ -909,7 +945,10 @@ export default function Home() {
       </main>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-gray-300 relative overflow-hidden">
+      <footer
+        className="bg-gray-900 text-gray-300 relative overflow-hidden"
+        id="contact"
+      >
         <div className="absolute top-0 left-0 h-full w-full bg-[url('/placeholder.svg?height=100&width=100&text=Pattern')] bg-repeat opacity-5"></div>
         <div className="container py-16 relative">
           <div className="grid gap-12 md:grid-cols-4">
@@ -918,7 +957,7 @@ export default function Home() {
                 <div className="relative h-12 w-12 overflow-hidden rounded-full bg-gradient-to-br from-green-500 to-blue-600 p-[2px]">
                   <div className="h-full w-full rounded-full bg-gray-900 p-1">
                     <Image
-                      src="/placeholder.svg?height=40&width=40&text=MD"
+                      src="/logo.svg?height=40&width=40&text=MD"
                       alt="My Doctor Logo"
                       width={40}
                       height={40}
