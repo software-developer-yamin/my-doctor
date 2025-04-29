@@ -29,6 +29,7 @@ import { useRouter } from "next/navigation";
 import { MobileNav } from "@/components/mobile-nav";
 import { useState, useEffect, useCallback, useMemo } from "react";
 import DownloadDialog from "@/components/download-dialog";
+import FeaturesSection from "@/components/healthcare-features";
 
 export default function Home() {
   const router = useRouter();
@@ -450,144 +451,7 @@ export default function Home() {
         </section>
 
         {/* Features Section */}
-        <section
-          id="features"
-          className="py-20 md:py-28 lg:py-32 bg-gradient-to-b from-white to-green-50 dark:from-gray-950 dark:to-gray-900 relative overflow-hidden transition-colors duration-300"
-        >
-          <div className="absolute top-0 left-0 -z-10 h-[30rem] w-[30rem] rounded-full bg-blue-50 dark:bg-blue-900/20 opacity-70 blur-3xl"></div>
-          <div className="absolute bottom-0 right-0 -z-10 h-[30rem] w-[30rem] rounded-full bg-green-50 dark:bg-green-900/20 opacity-70 blur-3xl"></div>
-          <div className="absolute top-1/2 left-1/2 -z-10 h-[40rem] w-[40rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-green-50 dark:bg-green-900/10 opacity-30 blur-3xl"></div>
-
-          <div className="container relative">
-            <div className="mx-auto max-w-3xl text-center mb-16 animate-fadeIn">
-              <Badge className="mb-4 bg-green-100 text-green-800 dark:bg-green-900/50 dark:text-green-300 hover:bg-green-200 dark:hover:bg-green-900/70 px-3 py-1 text-sm">
-                Key Features
-              </Badge>
-              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl mb-6 dark:text-white">
-                Powerful Healthcare{" "}
-                <span className="text-gradient dark:text-gradient-dark">
-                  Features
-                </span>
-              </h2>
-              <p className="text-lg text-gray-600 dark:text-gray-300">
-                Discover all the powerful features that make My Doctor your
-                ultimate healthcare companion.
-              </p>
-            </div>
-            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-              <div className="group relative rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-800 p-8 shadow-sm transition-all duration-300 hover:shadow-xl hover:shadow-green-500/5 dark:hover:shadow-green-900/10 hover:border-green-100 dark:hover:border-green-900 animate-slideUp">
-                <div className="absolute right-6 top-6 h-8 w-8 rounded-full bg-green-100 dark:bg-green-900/50 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
-                <div className="relative">
-                  <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-green-100 dark:bg-green-900/50 text-green-600 dark:text-green-400 transition-all duration-300 group-hover:bg-green-600 group-hover:text-white">
-                    <Video className="h-7 w-7" />
-                  </div>
-                  <h3 className="mb-3 text-xl font-bold dark:text-white">
-                    Instant Medical Assistance
-                  </h3>
-                  <p className="text-gray-600 dark:text-gray-300">
-                    Get help via video calls, chat, or in-person visits whenever
-                    you need it. Connect with doctors 24/7 for urgent
-                    consultations.
-                  </p>
-                </div>
-              </div>
-              <div
-                className="group relative rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-800 p-8 shadow-sm transition-all duration-300 hover:shadow-xl hover:shadow-green-500/5 dark:hover:shadow-green-900/10 hover:border-green-100 dark:hover:border-green-900 animate-slideUp"
-                style={{ animationDelay: "0.1s" }}
-              >
-                <div className="absolute right-6 top-6 h-8 w-8 rounded-full bg-green-100 dark:bg-green-900/50 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
-                <div className="relative">
-                  <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-green-100 dark:bg-green-900/50 text-green-600 dark:text-green-400 transition-all duration-300 group-hover:bg-green-600 group-hover:text-white">
-                    <MessageCircle className="h-7 w-7" />
-                  </div>
-                  <h3 className="mb-3 text-xl font-bold dark:text-white">
-                    24/7 Medical Chat Support
-                  </h3>
-                  <p className="text-gray-600 dark:text-gray-300">
-                    Always available for quick health advice from qualified
-                    medical professionals. Get answers to your health questions
-                    instantly.
-                  </p>
-                </div>
-              </div>
-              <div
-                className="group relative rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-800 p-8 shadow-sm transition-all duration-300 hover:shadow-xl hover:shadow-green-500/5 dark:hover:shadow-green-900/10 hover:border-green-100 dark:hover:border-green-900 animate-slideUp"
-                style={{ animationDelay: "0.2s" }}
-              >
-                <div className="absolute right-6 top-6 h-8 w-8 rounded-full bg-green-100 dark:bg-green-900/50 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
-                <div className="relative">
-                  <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-green-100 dark:bg-green-900/50 text-green-600 dark:text-green-400 transition-all duration-300 group-hover:bg-green-600 group-hover:text-white">
-                    <Hospital className="h-7 w-7" />
-                  </div>
-                  <h3 className="mb-3 text-xl font-bold dark:text-white">
-                    Discover Nearby Hospitals
-                  </h3>
-                  <p className="text-gray-600 dark:text-gray-300">
-                    Find hospitals with contact details and services in your
-                    area. Get directions, contact information, and available
-                    specialties.
-                  </p>
-                </div>
-              </div>
-              <div
-                className="group relative rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-800 p-8 shadow-sm transition-all duration-300 hover:shadow-xl hover:shadow-green-500/5 dark:hover:shadow-green-900/10 hover:border-green-100 dark:hover:border-green-900 animate-slideUp"
-                style={{ animationDelay: "0.3s" }}
-              >
-                <div className="absolute right-6 top-6 h-8 w-8 rounded-full bg-green-100 dark:bg-green-900/50 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
-                <div className="relative">
-                  <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-green-100 dark:bg-green-900/50 text-green-600 dark:text-green-400 transition-all duration-300 group-hover:bg-green-600 group-hover:text-white">
-                    <Play className="h-7 w-7" />
-                  </div>
-                  <h3 className="mb-3 text-xl font-bold dark:text-white">
-                    Informative Health Videos
-                  </h3>
-                  <p className="text-gray-600 dark:text-gray-300">
-                    Learn about health topics through curated videos from
-                    medical experts. Stay informed about the latest health
-                    information.
-                  </p>
-                </div>
-              </div>
-              <div
-                className="group relative rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-800 p-8 shadow-sm transition-all duration-300 hover:shadow-xl hover:shadow-green-500/5 dark:hover:shadow-green-900/10 hover:border-green-100 dark:hover:border-green-900 animate-slideUp"
-                style={{ animationDelay: "0.4s" }}
-              >
-                <div className="absolute right-6 top-6 h-8 w-8 rounded-full bg-green-100 dark:bg-green-900/50 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
-                <div className="relative">
-                  <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-green-100 dark:bg-green-900/50 text-green-600 dark:text-green-400 transition-all duration-300 group-hover:bg-green-600 group-hover:text-white">
-                    <MapPin className="h-7 w-7" />
-                  </div>
-                  <h3 className="mb-3 text-xl font-bold dark:text-white">
-                    Specialized Doctor Search
-                  </h3>
-                  <p className="text-gray-600 dark:text-gray-300">
-                    Find the right specialist for your specific health concerns.
-                    Filter by specialty, experience, ratings, and availability.
-                  </p>
-                </div>
-              </div>
-              <div
-                className="group relative rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-800 p-8 shadow-sm transition-all duration-300 hover:shadow-xl hover:shadow-green-500/5 dark:hover:shadow-green-900/10 hover:border-green-100 dark:hover:border-green-900 animate-slideUp"
-                style={{ animationDelay: "0.5s" }}
-              >
-                <div className="absolute right-6 top-6 h-8 w-8 rounded-full bg-green-100 dark:bg-green-900/50 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
-                <div className="relative">
-                  <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-green-100 dark:bg-green-900/50 text-green-600 dark:text-green-400 transition-all duration-300 group-hover:bg-green-600 group-hover:text-white">
-                    <Clock className="h-7 w-7" />
-                  </div>
-                  <h3 className="mb-3 text-xl font-bold dark:text-white">
-                    Appointment Management
-                  </h3>
-                  <p className="text-gray-600 dark:text-gray-300">
-                    Keep track of all your upcoming and past medical
-                    appointments. Receive reminders and easily reschedule when
-                    needed.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+        <FeaturesSection />
 
         {/* App Screenshots Section */}
         <section className="py-20 md:py-28 lg:py-32 relative overflow-hidden dark:bg-gray-950 transition-colors duration-300">
