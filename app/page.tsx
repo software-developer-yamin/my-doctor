@@ -612,7 +612,7 @@ export default function Home() {
               <div className="absolute -z-10 h-full w-full rounded-full bg-green-50 dark:bg-green-900/20 opacity-70 blur-3xl"></div>
               <div className="grid grid-cols-3 gap-4 md:gap-8">
                 <div className="transform translate-y-8 transition-transform duration-500 hover:-translate-y-1 hover:scale-105">
-                  <div className="rounded-2xl border-8 border-white dark:border-gray-800 bg-white dark:bg-gray-800 shadow-xl dark:shadow-black/30 overflow-hidden">
+                  <div className="rounded-2xl border-8 border-white dark:border-gray-800 bg-white dark:bg-gray-800 shadow-xl dark:shadow-black/30 overflow-hidden aspect-[9/19]">
                     <Image
                       src="/home.svg?height=600&width=300&text=App+Screen+1"
                       alt="My Doctor App Interface - Home Screen"
@@ -624,7 +624,7 @@ export default function Home() {
                   </div>
                 </div>
                 <div className="transition-transform duration-500 hover:-translate-y-1 hover:scale-105">
-                  <div className="rounded-2xl border-8 border-white dark:border-gray-800 bg-white dark:bg-gray-800 shadow-xl dark:shadow-black/30 overflow-hidden">
+                  <div className="rounded-2xl border-8 border-white dark:border-gray-800 bg-white dark:bg-gray-800 shadow-xl dark:shadow-black/30 overflow-hidden aspect-[9/19]">
                     <Image
                       src="/doctor.svg?height=600&width=300&text=App+Screen+2"
                       alt="My Doctor App Interface - Doctor Search"
@@ -636,7 +636,7 @@ export default function Home() {
                   </div>
                 </div>
                 <div className="transform translate-y-8 transition-transform duration-500 hover:-translate-y-1 hover:scale-105">
-                  <div className="rounded-2xl border-8 border-white dark:border-gray-800 bg-white dark:bg-gray-800 shadow-xl dark:shadow-black/30 overflow-hidden">
+                  <div className="rounded-2xl border-8 border-white dark:border-gray-800 bg-white dark:bg-gray-800 shadow-xl dark:shadow-black/30 overflow-hidden aspect-[9/19]">
                     <Image
                       src="/appointments.svg?height=600&width=300&text=App+Screen+3"
                       alt="My Doctor App Interface - Appointment Booking"
@@ -1220,7 +1220,10 @@ export default function Home() {
                   <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-800 group-hover:bg-green-600 transition-colors">
                     <MapPin className="h-4 w-4" />
                   </div>
-                  <span>পৌড়সভা মোড়, সিটি সেন্টারে , তৃতীয় তলা</span>
+                  <span>
+                    Address: pourosova mur, city centar 3rd floor, Narsingdi
+                    sadar, Narsingdi
+                  </span>
                 </li>
               </ul>
               <div className="mt-6">
