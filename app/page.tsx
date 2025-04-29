@@ -25,6 +25,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { useRouter } from "next/navigation";
+import { MobileNav } from "@/components/mobile-nav";
 
 export default function Home() {
   const router = useRouter();
@@ -91,12 +92,6 @@ export default function Home() {
           <div className="hidden md:flex items-center gap-4">
             <ThemeToggle />
             <Button
-              variant="outline"
-              className="border-green-500 text-green-600 dark:text-green-400 dark:border-green-700 hover:bg-green-50 dark:hover:bg-green-900/30 transition-all duration-300 hover:shadow-md"
-            >
-              Log In
-            </Button>
-            <Button
               className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 shadow-md shadow-green-500/20 dark:shadow-green-900/20 transition-all duration-300 hover:shadow-xl hover:shadow-green-500/30 dark:hover:shadow-green-900/30"
               onClick={() => router.push("/#download")}
             >
@@ -105,9 +100,14 @@ export default function Home() {
           </div>
           <div className="flex items-center gap-2 md:hidden">
             <ThemeToggle />
-            <Button variant="outline" size="icon" className="md:hidden">
-              <Menu className="h-5 w-5" />
-            </Button>
+            <MobileNav
+              triggerButton={
+                <Button variant="outline" size="icon" className="md:hidden">
+                  <Menu className="h-5 w-5" />
+                  <span className="sr-only">Open menu</span>
+                </Button>
+              }
+            />
           </div>
         </div>
       </header>
@@ -1129,15 +1129,6 @@ export default function Home() {
                     Cookie Policy
                   </Link>
                 </li>
-                <li>
-                  <Link
-                    href="#"
-                    className="text-gray-400 hover:text-green-400 transition-colors flex items-center gap-2 group"
-                  >
-                    <ChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />{" "}
-                    HIPAA Compliance
-                  </Link>
-                </li>
               </ul>
             </div>
             <div>
@@ -1147,23 +1138,39 @@ export default function Home() {
                   <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-800 group-hover:bg-green-600 transition-colors">
                     <Phone className="h-4 w-4" />
                   </div>
-                  <span>+1 (123) 456-7890</span>
+                  <a
+                    href="tel:01974200905"
+                    className="text-gray-400 hover:text-green-400"
+                  >
+                    01974-200905
+                  </a>
                 </li>
                 <li className="flex items-center gap-3 text-gray-400 group hover:text-green-400 transition-colors">
                   <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-800 group-hover:bg-green-600 transition-colors">
                     <Mail className="h-4 w-4" />
                   </div>
-                  <span>support@mydoctor.com</span>
+                  <a
+                    href="mailto:mydoctorinfo247@gmail.com?subject=Contact%20from%20Website"
+                    className="text-gray-400 hover:text-green-400"
+                  >
+                    mydoctorinfo247@gmail.com
+                  </a>
                 </li>
                 <li className="flex items-center gap-3 text-gray-400 group hover:text-green-400 transition-colors">
                   <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-800 group-hover:bg-green-600 transition-colors">
                     <MapPin className="h-4 w-4" />
                   </div>
-                  <span>123 Healthcare Ave, Medical District</span>
+                  <span>পৌড়সভা মোড়, সিটি সেন্টারে , তৃতীয় তলা</span>
                 </li>
               </ul>
               <div className="mt-6">
-                <Button className="bg-green-500 hover:bg-green-600 text-white w-full transition-all duration-300 hover:shadow-lg hover:shadow-green-500/20">
+                <Button
+                  onClick={() =>
+                    (window.location.href =
+                      "mailto:mydoctorinfo247@gmail.com?subject=Contact%20from%20Website")
+                  }
+                  className="bg-green-500 hover:bg-green-600 text-white w-full transition-all duration-300 hover:shadow-lg hover:shadow-green-500/20"
+                >
                   Contact Us
                 </Button>
               </div>
