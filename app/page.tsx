@@ -27,15 +27,7 @@ import { Badge } from "@/components/ui/badge";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { useRouter } from "next/navigation";
 import { MobileNav } from "@/components/mobile-nav";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogDescription,
-} from "@/components/ui/dialog";
 import { useState, useEffect, useCallback, useMemo } from "react";
-import { formatDistance } from "date-fns"; // Added import for date-fns
 import DownloadDialog from "@/components/download-dialog";
 
 export default function Home() {
