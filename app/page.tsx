@@ -19,6 +19,7 @@ import {
   Menu,
   Phone,
   Mail,
+  X,
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -26,9 +27,72 @@ import { Badge } from "@/components/ui/badge";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { useRouter } from "next/navigation";
 import { MobileNav } from "@/components/mobile-nav";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from "@/components/ui/dialog";
+import { useState, useEffect, useCallback, useMemo } from "react";
+import { formatDistance } from "date-fns"; // Added import for date-fns
+import DownloadDialog from "@/components/download-dialog";
 
 export default function Home() {
   const router = useRouter();
+  const [showDownloadDialog, setShowDownloadDialog] = useState(false);
+  const [showCountdown, setShowCountdown] = useState(true);
+  const [timeRemaining, setTimeRemaining] = useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  });
+
+  // Calculate launch date - May 15, 2025
+  const launchDate = useMemo(
+    () => new Date("May 15, 2025 00:00:00").getTime(),
+    []
+  );
+
+  // Handle download button click
+  const handleDownloadClick = useCallback(() => {
+    setShowDownloadDialog(true);
+  }, []);
+
+  // Calculate countdown to May 15
+  useEffect(() => {
+    const updateCountdown = () => {
+      const now = new Date().getTime();
+      const distance = launchDate - now;
+
+      if (distance < 0) {
+        // Launch date has passed
+        setTimeRemaining({
+          days: 0,
+          hours: 0,
+          minutes: 0,
+          seconds: 0,
+        });
+        return;
+      }
+
+      setTimeRemaining({
+        days: Math.floor(distance / (1000 * 60 * 60 * 24)),
+        hours: Math.floor(
+          (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+        ),
+        minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
+        seconds: Math.floor((distance % (1000 * 60)) / 1000),
+      });
+    };
+
+    updateCountdown();
+    const interval = setInterval(updateCountdown, 1000);
+
+    return () => clearInterval(interval);
+  }, [launchDate]);
+
   return (
     <div className="flex min-h-screen flex-col dark:bg-gray-950">
       {/* Header */}
@@ -93,7 +157,8 @@ export default function Home() {
             <ThemeToggle />
             <Button
               className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 shadow-md shadow-green-500/20 dark:shadow-green-900/20 transition-all duration-300 hover:shadow-xl hover:shadow-green-500/30 dark:hover:shadow-green-900/30"
-              onClick={() => router.push("/#download")}
+              onClick={handleDownloadClick}
+              aria-label="Download Now"
             >
               Download Now
             </Button>
@@ -102,7 +167,12 @@ export default function Home() {
             <ThemeToggle />
             <MobileNav
               triggerButton={
-                <Button variant="outline" size="icon" className="md:hidden">
+                <Button
+                  variant="outline"
+                  size="icon"
+                  className="md:hidden"
+                  aria-label="Open menu"
+                >
                   <Menu className="h-5 w-5" />
                   <span className="sr-only">Open menu</span>
                 </Button>
@@ -138,7 +208,8 @@ export default function Home() {
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button
                   className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white h-12 px-6 shadow-lg shadow-green-500/20 dark:shadow-green-900/20 transition-all duration-300 hover:shadow-xl hover:shadow-green-500/30 dark:hover:shadow-green-900/30 hover:scale-105"
-                  onClick={() => router.push("/#download")}
+                  onClick={handleDownloadClick}
+                  aria-label="Download Now"
                 >
                   <Download className="mr-2 h-4 w-4" /> Download Now
                 </Button>
@@ -146,6 +217,7 @@ export default function Home() {
                   variant="outline"
                   className="border-green-500 dark:border-green-700 text-green-600 dark:text-green-400 hover:bg-green-50 dark:hover:bg-green-900/30 h-12 px-6 transition-all duration-300 hover:shadow-md"
                   onClick={() => router.push("/#about")}
+                  aria-label="Learn More"
                 >
                   Learn More{" "}
                   <ChevronRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -374,6 +446,7 @@ export default function Home() {
                   <Button
                     className="group bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white h-12 px-6 shadow-lg shadow-green-500/20 dark:shadow-green-900/20 transition-all duration-300 hover:shadow-xl hover:shadow-green-500/30 dark:hover:shadow-green-900/30"
                     onClick={() => router.push("/#features")}
+                    aria-label="Explore Features"
                   >
                     Explore Features{" "}
                     <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -830,14 +903,9 @@ export default function Home() {
                   </p>
                   <div className="flex flex-col sm:flex-row gap-4">
                     <Button
-                      onClick={() =>
-                        window.open(
-                          "https://www.apple.com/apps",
-                          "_blank",
-                          "noopener,noreferrer"
-                        )
-                      }
+                      onClick={handleDownloadClick}
                       className="bg-white text-green-600 hover:bg-green-50 flex items-center gap-2 h-14 px-6 shadow-lg shadow-green-900/20 transition-all duration-300 hover:scale-105"
+                      aria-label="Download on App Store"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -846,9 +914,9 @@ export default function Home() {
                         viewBox="0 0 24 24"
                         fill="none"
                         stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                         className="h-6 w-6"
                       >
                         <path d="M8 2l8 14" />
@@ -862,14 +930,9 @@ export default function Home() {
                       </div>
                     </Button>
                     <Button
-                      onClick={() =>
-                        window.open(
-                          "https://play.google.com/store/apps?hl=en",
-                          "_blank",
-                          "noopener,noreferrer"
-                        )
-                      }
+                      onClick={handleDownloadClick}
                       className="bg-white text-green-600 hover:bg-green-50 flex items-center gap-2 h-14 px-6 shadow-lg shadow-green-900/20 transition-all duration-300 hover:scale-105"
+                      aria-label="Download on Google Play"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -878,9 +941,9 @@ export default function Home() {
                         viewBox="0 0 24 24"
                         fill="none"
                         stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
                         className="h-6 w-6"
                       >
                         <polygon points="5 3 19 12 5 21 5 3" />
@@ -934,6 +997,7 @@ export default function Home() {
                 <Button
                   className="group bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white h-12 px-6 shadow-lg shadow-green-500/20 dark:shadow-green-900/20 transition-all duration-300 hover:shadow-xl hover:shadow-green-500/30 dark:hover:shadow-green-900/30 hover:scale-105"
                   onClick={() => router.push("/#about")}
+                  aria-label="Learn More About Us"
                 >
                   Learn More About Us{" "}
                   <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -979,6 +1043,7 @@ export default function Home() {
                 <Link
                   href="#"
                   className="rounded-full bg-gray-800 p-2 hover:bg-green-600 transition-colors"
+                  aria-label="Facebook"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -998,6 +1063,7 @@ export default function Home() {
                 <Link
                   href="#"
                   className="rounded-full bg-gray-800 p-2 hover:bg-green-600 transition-colors"
+                  aria-label="Twitter"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -1017,6 +1083,7 @@ export default function Home() {
                 <Link
                   href="#"
                   className="rounded-full bg-gray-800 p-2 hover:bg-green-600 transition-colors"
+                  aria-label="Instagram"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -1038,6 +1105,7 @@ export default function Home() {
                 <Link
                   href="#"
                   className="rounded-full bg-gray-800 p-2 hover:bg-green-600 transition-colors"
+                  aria-label="LinkedIn"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -1170,6 +1238,7 @@ export default function Home() {
                       "mailto:mydoctorinfo247@gmail.com?subject=Contact%20from%20Website")
                   }
                   className="bg-green-500 hover:bg-green-600 text-white w-full transition-all duration-300 hover:shadow-lg hover:shadow-green-500/20"
+                  aria-label="Contact Us"
                 >
                   Contact Us
                 </Button>
@@ -1183,6 +1252,67 @@ export default function Home() {
           </div>
         </div>
       </footer>
+
+      {/* Countdown Timer */}
+      {showCountdown && (
+        <div className="fixed bottom-4 right-4 z-50 animate-fadeIn">
+          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-xl p-4 border border-green-100 dark:border-green-900 relative">
+            <button
+              onClick={() => setShowCountdown(false)}
+              className="absolute -top-2 -right-2 h-6 w-6 bg-gray-200 dark:bg-gray-700 rounded-full flex items-center justify-center hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors"
+              aria-label="Close countdown timer"
+            >
+              <X className="h-3 w-3 text-gray-600 dark:text-gray-400" />
+            </button>
+            <div className="text-center mb-2">
+              <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                App Launch In
+              </h3>
+            </div>
+            <div className="flex space-x-2">
+              <div className="flex flex-col items-center">
+                <div className="bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 rounded-md px-2 py-1 font-mono font-bold text-lg min-w-[40px] text-center">
+                  {timeRemaining.days}
+                </div>
+                <span className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                  Days
+                </span>
+              </div>
+              <div className="flex flex-col items-center">
+                <div className="bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 rounded-md px-2 py-1 font-mono font-bold text-lg min-w-[40px] text-center">
+                  {timeRemaining.hours}
+                </div>
+                <span className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                  Hours
+                </span>
+              </div>
+              <div className="flex flex-col items-center">
+                <div className="bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 rounded-md px-2 py-1 font-mono font-bold text-lg min-w-[40px] text-center">
+                  {timeRemaining.minutes}
+                </div>
+                <span className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                  Mins
+                </span>
+              </div>
+              <div className="flex flex-col items-center">
+                <div className="bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 rounded-md px-2 py-1 font-mono font-bold text-lg min-w-[40px] text-center animate-pulse">
+                  {timeRemaining.seconds}
+                </div>
+                <span className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                  Secs
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Download Dialog */}
+      <DownloadDialog
+        open={showDownloadDialog}
+        onOpenChange={setShowDownloadDialog}
+        launchDate={launchDate}
+      />
     </div>
   );
 }
